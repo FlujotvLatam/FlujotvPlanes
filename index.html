@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlujoTv LATAM - Canales en Vivo, Deportes, Películas, Anime y Música</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Para íconos -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Fuente moderna */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%); /* Fondo gradiente negro */
+            color: #fff;
+            overflow-x: hidden; /* Evitar scroll horizontal */
+            animation: fadeIn 1s ease-in; /* Animación de entrada */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        header {
+            background: linear-gradient(135deg, #ff6600, #e55a00, #cc5500); /* Gradiente naranja intenso */
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: moveBackground 10s linear infinite; /* Efecto de movimiento */
+        }
+        @keyframes moveBackground {
+            from { transform: translateX(0); }
+            to { transform: translateX(100px); }
+        }
+        header h1 {
+            font-size: 4em; /* Tamaño grande */
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 102, 0, 1); /* Sombra brillante */
+            margin: 0;
+            animation: glow 2s ease-in-out infinite alternate; /* Efecto glow */
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 102, 0, 1); }
+            to { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 102, 0, 1.5); }
+        }
+        header p {
+            font-size: 1.5em;
+            margin: 10px 0 0 0;
+            position: relative;
+            z-index: 1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .description {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 20px;
+            color: #ccc;
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .plans {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .plan-section {
+            width: 45%;
+            margin-bottom: 60px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .plan-section h2 {
+            text-align: center;
+            color: #ff6600;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+        .plan-card {
+            background: linear-gradient(135deg, #222, #111, #000); /* Gradiente oscuro */
+            border: 2px solid #ff6600;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 102, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        .plan-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1s ease-in-out;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .plan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.6);
+        }
+        .plan-card h3 {
+            margin-top: 0;
+            color: #ff6600;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .plan-card h3 i {
+            margin-right: 10px;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #fff;
+            text-align: center;
+        }
+        .buy-button {
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin: 20px auto 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.5);
+        }
+        .buy-button:hover {
+            background: linear-gradient(135deg, #e55a00, #cc5500);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.8);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00ff00, #00e600);
+            color: #000;
+            border: none;
+            padding: 18px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.6);
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .floating-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.8);
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        footer {
+            background: linear-gradient(135deg, #111, #000);
+            color: #ccc;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 2px solid #ff6600;
+            box-shadow: 0 -5px 20px rgba(255, 102, 0, 0.3);
+        }
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .plan-section {
+                width: 100%;
+            }
+            header h1 {
+                font-size: 3em;
+            }
+            .plan-section h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FlujoTv LATAM</h1>
+        <p>Disfruta de canales en vivo, deportes, películas, anime y música en una sola plataforma confiable y segura.</p>
+    </header>
+
+    <div class="container">
+        <div class="description">
+            <p>Elige el plan perfecto para ti. Todos los planes incluyen acceso ilimitado a contenido premium. Precios en soles (PEN) y dólares (USD). Métodos de pago: YAPE, BINANCE, REMESAS.</p>
+        </div>
+
+        <div class="plans">
+            <!-- Sección para 3 dispositivos -->
+            <div class="plan-section">
+                <h2><i class="fas fa-tv"></i> Planes para 3 Dispositivos</h2>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-day"></i> 1 Mes</h3>
+                    <p class="price">18 Soles (PEN) / 6 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%201%20mes%20para%203%20dispositivos%20por%2018%20soles" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 3 Meses</h3>
+                    <p class="price">54 Soles (PEN) / 18 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%203%20meses%20para%203%20dispositivos%20por%2054%20soles" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-week"></i> 7 Meses</h3>
+                    <p class="price">105 Soles (PEN) / 40 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%207%20meses%20para%203%20dispositivos%20por%2040%20USD" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-check"></i> 14 Meses</h3>
+                    <p class="price">190 Soles (PEN) / 75 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%2014%20meses%20para%203%20dispositivos%20por%2075%20USD" class="buy-button">Comprar</a>
+                </div>
+            </div>
+
+            <!-- Sección para 1 dispositivo -->
+            <div class="plan-section">
+                <h2><i class="fas fa-mobile-alt"></i> Planes para 1 Dispositivo</h2>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-day"></i> 1 Mes</h3>
+                    <p class="price">10 Soles (PEN) / 4 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%201%20mes%20para%201%20dispositivo%20por%2010%20soles" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 3 Meses</h3>
+                    <p class="price">29 Soles (PEN) / 12 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%203%20meses%20para%201%20dispositivo%20por%2029%20soles" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-week"></i> 7 Meses</h3>
+                    <p class="price">65 Soles (PEN) / 26 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%207%20meses%20para%201%20dispositivo%20por%2026%20USD" class="buy-button">Comprar</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3><i class="fas fa-calendar-check"></i> 14 Meses</h3>
+                    <p class="price">120 Soles (PEN) / 50 USD</p>
+                    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20comprar%20el%20plan%2014%20meses%20para%201%20dispositivo%20por%2050%20USD" class="buy-button">Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante -->
+    <a href="https://wa.me/51936301637?text=Hola,%20quiero%20información%20sobre%20paneles,%20me%20interesa%20ser%20distribuidor" class="floating-button">SOLICITA TU PANEL AQUI</a>
+
+    <!-- Footer para confianza -->
+    <footer>
+        <p>&copy; 2023 FlujoTv LATAM. Todos los derechos reservados.</p>
+        <p>Contáctanos: <a href="https://wa.me/51936301637">WhatsApp</a> | Email: soporte@flujotvlatam.com</p>
+        <p>Política de Privacidad | Términos y Condiciones | Servicio Seguro y Confiable</p>
+    </footer>
+</body>
+</html>
